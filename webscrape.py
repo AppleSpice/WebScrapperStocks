@@ -1,8 +1,15 @@
-from bs4 import BeautifulSoup
-from firebase import firebase
 import requests
+from bs4 import BeautifulSoup
+import pyrebase
+
 import json
 import sys
+
+#pip install pyrebase4
+#pip install requests
+#pip install bs4
+#pip install lxml
+
 
 
 
@@ -34,11 +41,22 @@ PricesJSON = json.dumps(Prices)
 
 print(PricesJSON)
 ####################################
+firebaseConfig={'apiKey': "AIzaSyC35YsYOpc39pFYIEW-CF5fz1qLXz0PtzY",
+    'authDomain': "stockpricetracker-9bea8.firebaseapp.com",
+    'databaseURL': "https://stockpricetracker-9bea8-default-rtdb.firebaseio.com",
+    'projectId': "stockpricetracker-9bea8",
+    'storageBucket': "stockpricetracker-9bea8.appspot.com",
+    'messagingSenderId': "370504356378",
+    'appId': "1:370504356378:web:ac97eac490cadb3e9d77a3",
+    'measurementId': "G-P4DNY76G07"}
 
-firebase = firebase.FirebaseApplication("https://stockpricetracker-9bea8-default-rtdb.firebaseio.com/", None)
+firebase = pyrebase.initialize_app(firebaseConfig)
 
-result = firebase.post('/stockData', Prices)
+db = firebase.database()
+
+db.push(Prices)
 
 
 
-#https://www.youtube.com/watch?v=rKuGCQda_Qo
+#https://www.youtube.com/watch?v=s-Ga8c3toVY
+#https://www.youtube.com/watch?v=rKuGCQda_Qo THIS IS OLD
