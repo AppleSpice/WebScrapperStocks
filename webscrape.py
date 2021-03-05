@@ -54,7 +54,7 @@ firebase = pyrebase.initialize_app(firebaseConfig)
 
 db = firebase.database()
 
-db.push(Prices)
+db.child("Stonks").set(Prices)
 
 
 
