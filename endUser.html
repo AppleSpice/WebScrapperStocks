@@ -5,11 +5,7 @@
 <title>Stock</title>
 </head>
 <body>
-	<ul id="list">
-		<li id="GME">GME:</li>
-		<li id="BEST">BEST:</li>
-		<li id="TSLA">TSLA:</li>
-	</ul>
+	<div id="stonks"></div>
 	
 	<script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-app.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-auth.js"></script>
@@ -35,14 +31,26 @@
 		ref.on('value', gotData, errData);
 		
 		function gotData(data){
+			//console.log(data)
 			console.log(data.val());
+			var stockPrices = data.val();
+			///////////////////////////////make array
+			const arrayResult = Object.keys(stockPrices).map(stock => {
+    			return {id: stock, name: stockPrices[stock]} 
+			});
+			console.log(arrayResult);
+			///////////////////////////////array to list
 		}
-		
 		function errData(err){
 			console.log('error!');
 			console.log(err);
 		}
 		
+		
+		
+		
+		
+		//https://www.youtube.com/watch?v=NcewaPfFR6Y
 	</script>
 	
 </body>
