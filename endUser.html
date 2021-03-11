@@ -5,7 +5,8 @@
 <title>Stock</title>
 </head>
 <body>
-	<div id="stonks"></div>
+	<h1>Stock Data</h1>
+	<p id="stonks"></p>
 	
 	<script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-app.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-auth.js"></script>
@@ -34,12 +35,16 @@
 			//console.log(data)
 			console.log(data.val());
 			var stockPrices = data.val();
-			///////////////////////////////make array
-			const arrayResult = Object.keys(stockPrices).map(stock => {
-    			return {id: stock, name: stockPrices[stock]} 
-			});
-			console.log(arrayResult);
-			///////////////////////////////array to list
+			///////////////////////////////prints array to html
+			test = "<ul>";
+			test += "<li>" + "BEST: " + stockPrices.BEST + "</li>";
+			test += "<li>" + "GME: " + stockPrices.GME + "</li>";
+			test += "<li>" + "TSLA: " + stockPrices.TSLA + "</li>";
+			test += "</ul>";
+			
+			document.getElementById("stonks").innerHTML = test;
+			
+			///////////////////////////////////////////////////
 		}
 		function errData(err){
 			console.log('error!');
